@@ -1,4 +1,5 @@
-getgenv().boostFPS = true
+getgenv().boostFPS = true 
+
 repeat task.wait() until game:IsLoaded();
 
 local vim = game:GetService("VirtualInputManager")
@@ -22,23 +23,25 @@ vim:SendKeyEvent(false, "F9", 0, game)
 setfpscap(5000)
 
 task.spawn(function()
-	while true do
-	task.wait()
-	if not boostFPS then
-		local panel = CoreGui:FindFirstChild("MainView", true);
+	while true do task.wait()
 
-		if panel then
-			local screen = panel.Parent.Parent.Parent
-       			screen.Enabled = false;
-		end
-		
-		continue;
-	end
-	
+        if not getgenv().boostFPS then
+            local panel = CoreGui:FindFirstChild("DevConsoleMaster", true);
 
-	warn("")
-	
-	if not game:GetService("CoreGui"):FindFirstChild("DevConsoleUI", true):FindFirstChild("MainView") then
+            if panel then
+                panel.Enabled = true;
+                vim:SendKeyEvent(true, "F9", 0, game)    
+                vim:SendKeyEvent(false, "F9", 0, game)  
+                repeat task.wait() until boostFPS
+            end
+
+            continue;
+        end
+
+
+		warn("")
+
+		if not CoreGui:FindFirstChild("DevConsoleUI", true):FindFirstChild("MainView") then
 			vim:SendKeyEvent(true, "F9", 0, game)    
 			wait()
 			vim:SendKeyEvent(false, "F9", 0, game)  
