@@ -29,9 +29,9 @@ task.spawn(function()
 
 		if panel then
 			local screen = panel.Parent.Parent.Parent
-       		screen.Enabled = true;
+       			screen.Enabled = false;
 		end
-
+		
 		continue;
 	end
 	
